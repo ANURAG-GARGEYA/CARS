@@ -5,5 +5,5 @@ repos:
     -   id: dotnet-format
         name: dotnet-format
         language: system 
-        entry: dotnet format --verify-no-changes ./CARS.sln --include
+        entry: dotnet format --verify-no-changes CARS.sln --include
         types_or: ["c#", "vb"]
