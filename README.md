@@ -1,14 +1,16 @@
 # CARS
 Contextual Augmented Reality System
 
-[![GitHub Super-Linter](https://github.com/ANURAG-GARGEYA/CARS/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+![dotnet-format](https://github.com/ANURAG-GARGEYA/CARS/workflows/Lint%20Code%20Base/badge.svg)
 
-Hello. This is a setup required before you can run the project
+## About
 
-Unity version : 2020.3.18f1
+This is where the description of the project goes.
 
-Following packages need to be installed on your visual studio IDE
-1. Desktop development with c++
-2. Universal windows platform development
-
-Clone the repo for any projects related Hololense.
+---
+## Setup
+If it's your first time setting up the project please read through these pages in the given order and follow the instructions:
+1. [Python](/Help/Python.md)
+2. [Git](/Help/Git.md)
+3. [Visual Studio](/Help/VS.md)
+4. [Unity](/Help/Unity.md)
