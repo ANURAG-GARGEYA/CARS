@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SandboxScene.unity
+    guid: 0f4f5725343b7674c9a2cd96323c0195
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: c5cbebab9fd7a7647a25521c3ae86332, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 43284bcb599180a4ba3a1994168b5428, type: 2}
