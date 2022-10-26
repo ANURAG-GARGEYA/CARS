@@ -5,7 +5,7 @@ Contextual Augmented Reality System
 
 ## About
 
-This is where the description of the project goes.
+Contextual Augmented Reality System or CARS, is a Hololens smart home solution that enables you to interact with the smart home devices through its AR interface. Once you setup the room with the hololense, the system can recognize, the interactable objects and control them. For the first phase, support for Philips Hue and Sonos Speakers can be expected.
 
 ---
 ## Setup
