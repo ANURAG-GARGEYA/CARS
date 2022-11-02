@@ -1,14 +1,16 @@
 using UnityEngine;
+using System;
 using ByteDev.Sonos;
 using ByteDev.Sonos.Models;
 using Microsoft.MixedReality.Toolkit.UI;
 using TMPro;
 
+
 // Just playing around with sonos api
 public class SonosAPI : MonoBehaviour
 {
     public string ip;
-    public TextMeshPro songTitleObj;
+    public TextMeshPro trackTitle;
 
     private SonosController _controller;
     private SonosVolume _volume;
@@ -17,7 +19,7 @@ public class SonosAPI : MonoBehaviour
     void Start()
     {
         _controller = new SonosControllerFactory().Create(ip);
-        songTitleObj.text = "Some cool song"; // TODO figure out how to get track data from sonos
+        // trackTitle.text = "Some cool song"; // TODO figure out how to get track data from sonos
         InvokeRepeating("UpdateValues", 0.0f, 5.0f);
     }
 
