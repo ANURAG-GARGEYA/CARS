@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SandboxScene_UI.unity
     guid: 5027929bdc3eb0744ad328587151fe2d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Samples/Mixed Reality Toolkit Examples/2.8.2/Demos - HandTracking/Scenes/HandInteractionExamples.unity
     guid: 3dd4a396b5225f8469b9a1eb608bfa57
+  - enabled: 1
+    path: Assets/Scenes/Philips-Sonos-Sandbox.unity
+    guid: e0e29c1573c2c6e47a24683823463b12
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: c5cbebab9fd7a7647a25521c3ae86332, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 43284bcb599180a4ba3a1994168b5428, type: 2}
