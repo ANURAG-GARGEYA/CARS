@@ -1,22 +1,35 @@
 using UnityEngine;
 using System;
-using Microsoft.MixedReality.Toolkit.UI;
 using TMPro;
-using HADotNet.Core;
-using HADotNet.Core.Clients;
+using Newtonsoft.Json;
+using Microsoft.MixedReality.Toolkit.UI;
+using System.Text;
+using System.Collections.Generic;
 
 // Just playing around with sonos api
 public class SonosAPI : MonoBehaviour
 {
-    public string ip;
+    public HARequests HUB;
+    public string id = "media_player.den";
     public TextMeshPro trackTitle;
+    public TextMeshPro artist;
 
-    private ServiceClient _serviceClient;
     private bool _isPlaying = false;
+    private float _currentVolume = 0.1f;
 
     void Start()
     {
-        _serviceClient = ClientFactory.GetClient<ServiceClient>();
+        var data = new Dictionary<string, dynamic>();
+        HUB.Get(id, data).Then(res =>
+        {
+            Debug.Log("Status" + res.ToString() + "Ok");
+            string jsonStr = Encoding.UTF8.GetString(res.Data);
+            data = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(jsonStr);
+            // Debug.Log(JsonConvert.SerializeObject(data));
+        }).Catch(err =>
+        {
+            Debug.Log(err.Message);
+        });
     }
 
     // TODO how to monitor states without big overhead 
@@ -25,30 +38,49 @@ public class SonosAPI : MonoBehaviour
     {
     }
 
-    public async void PlayPause()
+    public void PlayPause()
     {
-        await _serviceClient.CallService("media_player", "media_play_pause", new { entity_id = "media_player.den" });
+        var data = new Dictionary<string, dynamic>();
+        data["entity_id"] = id;
+
+        HUB.Post("media_player", "media_play_pause", data);
     }
 
-    public async void AddTrack()
+    public void AddTrack()
     {
-        await _serviceClient.CallService("media_player", "play_media", new { entity_id = "media_player.den", media_content_type = "music", media_content_id = "https://open.spotify.com/track/3nVr75rx4FFrXGkuwU5CCg?si=1abf34356f514ff9" });
+        var data = new Dictionary<string, dynamic>();
+        data["entity_id"] = id;
+        data["media_content_type"] = "music";
+        data["media_content_id"] = "https://open.spotify.com/album/3IaQ0DQMIXMShbMDNepeTK?si=FT-FwhitTT-MshMvf099wA";
+
+        HUB.Post("media_player", "play_media", data);
     }
 
-    public async void NextTrack()
+    public void NextTrack()
     {
-        await _serviceClient.CallService("media_player", "media_next_track", new { entity_id = "media_player.den" });
+        var data = new Dictionary<string, dynamic>();
+        data["entity_id"] = id;
+
+        HUB.Post("media_player", "media_next_track", data);
     }
 
-    public async void PrevTrack()
+    public void PrevTrack()
     {
-        await _serviceClient.CallService("media_player", "media_previous_track", new { entity_id = "media_player.den" });
+        AddTrack();
+        var data = new Dictionary<string, dynamic>();
+        data["entity_id"] = id;
+
+        HUB.Post("media_player", "media_previous_track", data);
     }
 
-    public async void OnVolumeSliderUpdate(SliderEventData eventData)
+    public void OnVolumeSliderUpdate(SliderEventData eventData)
     {
-        double newVolume = Math.Min(eventData.NewValue, 0.15); // just for testing to avoid blasting loud music in the lab
-        await _serviceClient.CallService("media_player", "volume_set", new { entity_id = "media_player.den", volume_level = newVolume });
+        float newVolume = (float)Math.Min(eventData.NewValue, 0.15); // just for testing to avoid blasting loud music in the lab
+        if (newVolume != _currentVolume)
+        {
+            // _serviceClient.CallService("media_player", "volume_set", new { entity_id = "media_player.den", volume_level = newVolume });
+            _currentVolume = newVolume;
+        }
     }
 
     void OnDestroy()
