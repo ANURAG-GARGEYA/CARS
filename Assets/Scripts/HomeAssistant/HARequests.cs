@@ -13,15 +13,9 @@ public class HARequests : MonoBehaviour
         RestClient.DefaultRequestHeaders["Authorization"] = $"Bearer {apiKey}";
     }
 
-    public void Post(string media, string action, Dictionary<string, dynamic> objectData)
+    public RSG.IPromise<ResponseHelper> Post(string media, string action, Dictionary<string, dynamic> objectData)
     {
-        RestClient.Post($"{haUrl}/api/services/{media}/{action}", JsonConvert.SerializeObject(objectData)).Then(res =>
-        {
-            Debug.Log("Status" + res.ToString() + "Ok");
-        }).Catch(err =>
-        {
-            Debug.Log(err.Message);
-        });
+        return RestClient.Post($"{haUrl}/api/services/{media}/{action}", JsonConvert.SerializeObject(objectData));
     }
 
     public RSG.IPromise<ResponseHelper> Get(string mediaId, Dictionary<string, dynamic> dataToSave)

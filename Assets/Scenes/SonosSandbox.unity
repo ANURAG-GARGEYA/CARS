@@ -861,5 +861,77 @@ PrefabInstance:
       propertyPath: trackTitle
       value: 
       objectReference: {fileID: 152356327}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: sliderValue
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: sliderStepDivisions
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: useSliderStepDivisions
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnValueUpdated.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnInteractionEnded.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnValueUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnValueUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2012995469}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnInteractionEnded.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnValueUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnInteractionEnded.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2012995469}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnValueUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnVolumeSliderUpdated
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnInteractionEnded.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnInteractionEnded.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnVolumeSliderInteractionEnded
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnValueUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SonosController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnInteractionEnded.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SonosController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnInteractionEnded.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnValueUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987556196609900137, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnInteractionEnded.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
