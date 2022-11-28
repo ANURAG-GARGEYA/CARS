@@ -2,8 +2,8 @@ using UnityEngine;
 using Proyecto26;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
-using MusicHelpers;
 
 
 
@@ -40,9 +40,8 @@ public class SpotifyAPI : MonoBehaviour
         RestClient.Post(rh).Then(res =>
             {
                 string jsonStr = Encoding.UTF8.GetString(res.Data);
-
-                var data = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonStr);
-                _authToken = data["access_token"];
+                dynamic data = JValue.Parse(jsonStr);
+                _authToken = data.access_token;
             }).Catch(err =>
             {
                 Debug.LogError(err.Message);

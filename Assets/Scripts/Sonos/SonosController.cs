@@ -1,16 +1,12 @@
 using UnityEngine;
 using System;
 using TMPro;
-using Newtonsoft.Json;
 using System.Text;
 using Newtonsoft.Json.Linq;
 using System.Collections;
-using System.Collections.Generic;
 using Microsoft.MixedReality.Toolkit.UI;
 using MusicHelpers;
 
-
-// TODO CHANGE DICT TO JOBJECT
 
 public class SonosController : MonoBehaviour
 {
@@ -26,8 +22,6 @@ public class SonosController : MonoBehaviour
     private Track? _currentTrack;
     private Album? _currentAlbum;
 
-    public Track SetTrack { set; get; }
-    public Album SetAlbum { set; get; }
 
     void Start()
     {
@@ -43,29 +37,29 @@ public class SonosController : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        var data = new Dictionary<string, dynamic>();
-        HUB.Get(id, data).Then(res =>
+        HUB.Get(id).Then(res =>
         {
-            // Debug.Log("GET");
             string jsonStr = Encoding.UTF8.GetString(res.Data);
+            dynamic data = JObject.Parse(jsonStr);
+            _isPlaying = data.state != "paused";
 
-            data = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(jsonStr);
-            _isPlaying = data["state"] != "paused";
-
-            var attributes = data["attributes"].ToObject<Dictionary<string, dynamic>>();
-            _currentTrack.title = attributes["media_title"];
-            _currentTrack.artist = attributes["media_artist"];
-            _currentTrack.duration = (int)attributes["media_duration"];
+            if (_currentTrack != null)
+            {
+                _currentTrack.title = data.attributes.media_title;
+                _currentTrack.artist = data.attributes.media_artist;
+                _currentTrack.duration = data.attributes.media_duration;
+            }
 
             if (updateVolume)
-                _currentVolume = (float)attributes["volume_level"];
+                _currentVolume = data.attributes.volume_level;
 
         }).Catch(err =>
             {
-                Debug.Log(err.Message);
+                Debug.LogError(err.Message);
             });
     }
 
+    // TODO Turn into event!
     void UpdateUI()
     {
         trackTitle.text = _currentTrack?.title ?? "";
@@ -74,37 +68,42 @@ public class SonosController : MonoBehaviour
 
     public void PlayPause()
     {
-        var data = new Dictionary<string, dynamic>();
-        data["entity_id"] = id;
+        dynamic data = new JObject();
+        data.entity_id = id;
 
-        HUB.Post("media_player", "media_play_pause", data);
+        string stringifiedData = data.ToString();
+        HUB.Post("media_player", "media_play_pause", stringifiedData);
     }
 
     public void NextTrack()
     {
-        var data = new Dictionary<string, dynamic>();
-        data["entity_id"] = id;
+        dynamic data = new JObject();
+        data.entity_id = id;
 
-        HUB.Post("media_player", "media_next_track", data).Then(res =>
+        string stringifiedData = data.ToString();
+        HUB.Post("media_player", "media_next_track", stringifiedData).Then(res =>
         {
-            StartCoroutine(UpdateValues());
+            _currentTrackIndex = Math.Min(_currentAlbum.TrackCount - 1, _currentTrackIndex + 1);
+            _currentTrack = _currentAlbum.tracks[_currentTrackIndex];
         }).Catch(err =>
         {
-            Debug.Log(err.Message);
+            Debug.LogError(err.Message);
         });
     }
 
     public void PrevTrack()
     {
-        var data = new Dictionary<string, dynamic>();
-        data["entity_id"] = id;
+        dynamic data = new JObject();
+        data.entity_id = id;
 
-        HUB.Post("media_player", "media_previous_track", data).Then(res =>
+        string stringifiedData = data.ToString();
+        HUB.Post("media_player", "media_previous_track", stringifiedData).Then(res =>
         {
-            StartCoroutine(UpdateValues());
+            _currentTrackIndex = Math.Max(0, _currentTrackIndex - 1);
+            _currentTrack = _currentAlbum.tracks[_currentTrackIndex];
         }).Catch(err =>
         {
-            Debug.Log(err.Message);
+            Debug.LogError(err.Message);
         });
     }
 
@@ -117,23 +116,24 @@ public class SonosController : MonoBehaviour
 
         _currentVolume = newVolume;
 
-        var data = new Dictionary<string, dynamic>();
-        data["entity_id"] = id;
-        data["volume_level"] = newVolume;
+        dynamic data = new JObject();
+        data.entity_id = id;
+        data.volume_level = newVolume;
 
-        HUB.Post("media_player", "volume_set", data).Then(res =>
+        string stringifiedData = data.ToString();
+        HUB.Post("media_player", "volume_set", stringifiedData).Then(res =>
         {
             StartCoroutine(UpdateValues(updateVolume: false));
         }).Catch(err =>
         {
-            Debug.Log(err.Message);
+            Debug.LogError(err.Message);
         });
     }
 
     public void AddAlbum()
     {
 
-        spotify.GetAlbum("4aawyAB9vmqN3uQ7FjRGTy").Then(res =>
+        spotify.GetAlbum("6WLhmQ6uTqiOJHKNoLLmnX").Then(res =>
         {
             string jsonStr = Encoding.UTF8.GetString(res.Data);
             dynamic albumData = JValue.Parse(jsonStr);
@@ -146,7 +146,9 @@ public class SonosController : MonoBehaviour
             postData.entity_id = id;
             postData.media_content_type = "music";
             postData.media_content_id = $"https://open.spotify.com/album/{_currentAlbum.spotifyID}";
-            // HUB.Post("media_player", "play_media", postData);
+
+            string stringifiedData = postData.ToString();
+            HUB.Post("media_player", "play_media", stringifiedData);
 
         }).Catch(err =>
         {
