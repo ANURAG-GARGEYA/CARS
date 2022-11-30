@@ -36,9 +36,9 @@ public class example : MonoBehaviour {
 
     private void StartPaint()
     {
-        go = (GameObject)Instantiate(ColorPickedPrefab, transform.position + Vector3.up * 1.0f, Quaternion.identity);
+        go = (GameObject)Instantiate(ColorPickedPrefab/*, transform.position + Vector3.up * 1.0f, Quaternion.identity*/);
         //go.transform.localScale = Vector3.one * 0.1f;
-        go.transform.LookAt(Camera.main.transform);
+        //go.transform.LookAt(Camera.main.transform);
         CP = go.GetComponent<ColorPickerTriangle>();
         CP.SetNewColor(mat.color);
         isPaint = true;
