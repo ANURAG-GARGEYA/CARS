@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CloseColorPicker : MonoBehaviour
 {
-    public GameObject TriangleColorPicker;
+    public GameObject ColorPickerPrefabe;
     public GameObject OnButton;
     public GameObject OffButton;
     // Start is called before the first frame update
@@ -25,9 +25,9 @@ public class CloseColorPicker : MonoBehaviour
         //     OffButton.SetActive(false);
         //      OnButton.SetActive(true);
         // }
-        if (TriangleColorPicker != null)
-        {
-            TriangleColorPicker.SetActive(false);
+       if (ColorPickerPrefabe != null)
+       {
+            ColorPickerPrefabe.SetActive(false);
 
         }
         //else

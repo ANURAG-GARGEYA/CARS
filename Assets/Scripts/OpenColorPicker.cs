@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class OpenColorPicker : MonoBehaviour
 {
-    public GameObject TriangleColorPicker;
+    public GameObject ColorPickerPrefabe;
     public GameObject OnButton;
     public GameObject OffButton;
     // Start is called before the first frame update
@@ -26,11 +26,11 @@ public class OpenColorPicker : MonoBehaviour
        //     OffButton.SetActive(false);
       //      OnButton.SetActive(true);
        // }
-            if (TriangleColorPicker != null)
-            {
-                TriangleColorPicker.SetActive(true);
+            //if (ColorPickerPrefabe != null)
+            //{
+             //   ColorPickerPrefabe.SetActive(true);
 
-            }
+           // }
             //else
             //{
              //   TriangleColorPicker.SetActive(false);
