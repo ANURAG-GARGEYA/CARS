@@ -1,29 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Microsoft.MixedReality.Toolkit.UI ;
 
 public class AlbumEventHandler : MonoBehaviour
 {
-    public class AlbumInHand
+
+    public int AlbumCount;
+    public GameObject AlbumPrefab;
+    public GameObject Container_Collection;
+    public float GapBetweenAlbums=0;
+    public GameObject LPRecord;
+    public Transform LPRecordSpawnPoint;
+
+
+    private void Start()
     {
-        public Transform tranform;
-        public GameObject parent;
+        for(int i=0;i<AlbumCount;i++)
+        {
+            GameObject a = GameObject.Instantiate(AlbumPrefab);
+            a.transform.parent = Container_Collection.transform;
+            a.transform.position = Vector3.zero;
+            a.transform.localPosition= new Vector3(0,GapBetweenAlbums,0);
+            GapBetweenAlbums -= 0.141f;
+            a.transform.rotation= Quaternion.identity;
+            a.GetComponent<AlbumInformationHolder>().LPRecordSpawnPoint = LPRecordSpawnPoint;
+            a.GetComponent<AlbumInformationHolder>().AlbumID = i.ToString();
+        }
     }
-
-    public void AlbumHeld(GameObject album)
-    {
-        album.GetComponent<BoxCollider>().enabled = true;
-        //var x = new AlbumInHand();
-        //x.parent = album.transform.parent.gameObject;
-        //x.tranform.position = album.transform.position;
-       // x.tranform.rotation = album.transform.rotation;
-
-        album.transform.parent = null;
-
-        album.transform.GetChild(0).gameObject.SetActive(false);
-        album.transform.GetChild(1).gameObject.SetActive(true); 
-        
-    }
+ 
 
 
 
