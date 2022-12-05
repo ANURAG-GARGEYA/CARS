@@ -8,9 +8,6 @@ public class PauseButtonChangeUI : MonoBehaviour
     public GameObject PauseButton;
     public GameObject PlayButton;
    
-   
-    
-   
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +23,5 @@ public class PauseButtonChangeUI : MonoBehaviour
     {
         PauseButton.SetActive(false);
         PlayButton.SetActive(true);
-
     }
 }
