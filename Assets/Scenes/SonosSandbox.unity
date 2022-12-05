@@ -13380,6 +13380,9 @@ MonoBehaviour:
   id: media_player.den
   trackTitle: {fileID: 1407361555}
   artist: {fileID: 287000469}
+  trackProgressSlider: {fileID: 1679862334}
+  trackProgressFormatted: {fileID: 1637047969}
+  trackDurationFormatted: {fileID: 1042318989}
 --- !u!4 &1005717739
 Transform:
   m_ObjectHideFlags: 0
@@ -13553,6 +13556,17 @@ Transform:
   m_Father: {fileID: 85085221}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1042318989 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4812842229352459006, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
+  m_PrefabInstance: {fileID: 2127617161}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1088712546
 GameObject:
   m_ObjectHideFlags: 0
@@ -19495,6 +19509,17 @@ Transform:
   m_Father: {fileID: 913478741}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1637047969 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2699917700721340204, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
+  m_PrefabInstance: {fileID: 2127617161}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1638590287
 GameObject:
   m_ObjectHideFlags: 0
@@ -19902,6 +19927,17 @@ Transform:
   m_Father: {fileID: 390429065}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1679862334 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8741054098436734037, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
+  m_PrefabInstance: {fileID: 2127617161}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1692557795
 GameObject:
   m_ObjectHideFlags: 0
@@ -23266,70 +23302,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 126745657746579528, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: AlbumIDs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 126745657746579528, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: AlbumIDs.Array.data[0]
-      value: 6WLhmQ6uTqiOJHKNoLLmnX
-      objectReference: {fileID: 0}
     - target: {fileID: 611909751473196390, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
       propertyPath: cameraMethods
       value: 
       objectReference: {fileID: 1195152217}
-    - target: {fileID: 2622962051679997365, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3815126803770613875, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: sliderStepDivisions
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3815126803770613875, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: useSliderStepDivisions
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3815126803770613875, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: OnValueUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3815126803770613875, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
       propertyPath: OnValueUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1005717738}
-    - target: {fileID: 3815126803770613875, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: OnValueUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnVolumeSliderUpdated
-      objectReference: {fileID: 0}
-    - target: {fileID: 3815126803770613875, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: OnValueUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SonosController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4270278131982815019, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 5767861740421036448, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5878863155889335678, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5878863156170432165, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
       propertyPath: sonosController
       value: 
       objectReference: {fileID: 1005717738}
-    - target: {fileID: 5878863156966135280, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: m_fontSize
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5878863156966135280, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: m_overflowMode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5878863156966135280, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5878863157143246106, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -23378,57 +23366,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: SonosRecordPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 5878863157252603553, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5878863157252603562, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1005717738}
-    - target: {fileID: 5878863157252603562, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: PlayPause
-      objectReference: {fileID: 0}
-    - target: {fileID: 5878863157252603562, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: SonosController, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 6629329280141107387, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1005717738}
-    - target: {fileID: 6629329280141107387, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PrevTrack
-      objectReference: {fileID: 0}
-    - target: {fileID: 6629329280141107387, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SonosController, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 6629329280175497608, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1005717738}
-    - target: {fileID: 6629329280175497608, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: PlayPause
-      objectReference: {fileID: 0}
-    - target: {fileID: 6629329280175497608, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: SonosController, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 6629329280262214283, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1005717738}
-    - target: {fileID: 6629329280262214283, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextTrack
+    - target: {fileID: 7223874044823997487, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.063
       objectReference: {fileID: 0}
-    - target: {fileID: 6629329280262214283, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SonosController, Assembly-CSharp
+    - target: {fileID: 8404801214291276276, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e43e1515de710d34c8c9fd8220de2237, type: 3}

@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using System.Collections;
 using Microsoft.MixedReality.Toolkit.UI;
 using MusicHelpers;
+using UnityEngine.UI;
 
 
 public class SonosController : MonoBehaviour
@@ -15,10 +16,14 @@ public class SonosController : MonoBehaviour
     public string id = "media_player.den";
     public TextMeshProUGUI trackTitle;
     public TextMeshProUGUI artist;
+    public Slider trackProgressSlider;
+    public TextMeshProUGUI trackProgressFormatted;
+    public TextMeshProUGUI trackDurationFormatted;
 
     private bool _isPlaying;
     private float _currentVolume;
     private int _currentTrackIndex;
+    private float _currentTrackProgress = 0.0f;
     private Track? _currentTrack;
     private Album? _currentAlbum;
 
@@ -30,6 +35,7 @@ public class SonosController : MonoBehaviour
 
     void Update()
     {
+
         UpdateUI();
     }
 
@@ -63,6 +69,18 @@ public class SonosController : MonoBehaviour
     {
         trackTitle.text = _currentTrack?.title ?? "";
         artist.text = _currentTrack?.artist ?? "";
+
+
+        if (_currentTrack != null)
+        {
+            TimeSpan progressTime = TimeSpan.FromSeconds(_currentTrackProgress);
+            trackProgressFormatted.text = progressTime.ToString(@"mm\:ss");
+            TimeSpan durationTime = TimeSpan.FromSeconds(_currentTrack.duration);
+            trackDurationFormatted.text = durationTime.ToString(@"mm\:ss");
+
+            _currentTrackProgress += Time.deltaTime;
+            trackProgressSlider.value = _currentTrackProgress / (float)_currentTrack.duration;
+        }
     }
 
     public void PlayPause()
@@ -84,6 +102,7 @@ public class SonosController : MonoBehaviour
         {
             _currentTrackIndex = Math.Min(_currentAlbum.TrackCount - 1, _currentTrackIndex + 1);
             _currentTrack = _currentAlbum.tracks[_currentTrackIndex];
+            _currentTrackProgress = 0;
         }).Catch(err =>
         {
             Debug.LogError(err.Message);
@@ -100,6 +119,7 @@ public class SonosController : MonoBehaviour
         {
             _currentTrackIndex = Math.Max(0, _currentTrackIndex - 1);
             _currentTrack = _currentAlbum.tracks[_currentTrackIndex];
+            _currentTrackProgress = 0;
         }).Catch(err =>
         {
             Debug.LogError(err.Message);
@@ -154,6 +174,7 @@ public class SonosController : MonoBehaviour
 
     public void AddAlbum(string albumID)
     {
+        _currentTrackProgress = 0.0f;
         spotify.GetAlbum(albumID).Then(res =>
         {
             string jsonStr = Encoding.UTF8.GetString(res.Data);

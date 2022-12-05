@@ -8,14 +8,14 @@ namespace MusicHelpers
         public string spotifyID;
         public string title;
         public string artist;
-        public int duration;
+        public float duration;
 
         public Track(dynamic jsonData)
         {
             spotifyID = jsonData.id;
             title = jsonData.name;
             artist = jsonData.artists[0].name;
-            duration = jsonData.duration_ms;
+            duration = jsonData.duration_ms / 1000f;
         }
 
         public override string ToString()
@@ -48,11 +48,11 @@ namespace MusicHelpers
         }
 
         public int TrackCount { get { return tracks.Count; } }
-        public int Duration
+        public float Duration
         {
             get
             {
-                int totalDuration = 0;
+                float totalDuration = 0;
                 foreach (var track in tracks)
                     totalDuration += track.duration;
 
