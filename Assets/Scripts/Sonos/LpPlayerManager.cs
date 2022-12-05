@@ -4,20 +4,27 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class LpPlayerManager : MonoBehaviour
 {
+    public SonosController sonosController;
     public Event OnRecordPlaced;
     [SerializeField]
     private GameObject _mediaPlayerUI;
 
+    void Start()
+    {
+        _mediaPlayerUI.SetActive(false);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag=="Album")
+        if (other.tag == "Album")
         {
-         //Debug.Log(other.GetComponent<AlbumInformationHolder>().AlbumName);
-          Debug.Log(other.gameObject.name);
-          _mediaPlayerUI.SetActive(true);
+            sonosController.AddAlbum(other.GetComponent<Record>().albumID);
+            //Debug.Log(other.GetComponent<AlbumInformationHolder>().AlbumName);
+            Debug.Log(other.gameObject.name);
+            _mediaPlayerUI.SetActive(true);
             other.gameObject.transform.parent = null;
             Destroy(other.gameObject);
-        }    
+        }
 
     }
 }

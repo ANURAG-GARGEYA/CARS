@@ -7,7 +7,7 @@ public class AlbumInformationHolder : MonoBehaviour
 {
     [SerializeField]
     private GameObject _lpRecord;
-    
+
     public string AlbumName;
     public string AlbumID;
     public SpriteRenderer AlbumArtSprite;
@@ -22,6 +22,7 @@ public class AlbumInformationHolder : MonoBehaviour
     {
         GameObject a = Instantiate(_lpRecord, LPRecordSpawnPoint.position, LPRecordSpawnPoint.rotation);
         a.transform.localScale = LPRecordSpawnPoint.localScale;
+        a.GetComponent<Record>().albumID = AlbumID;
     }
 
 }

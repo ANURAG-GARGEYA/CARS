@@ -13,8 +13,8 @@ public class SonosController : MonoBehaviour
     public HARequests HUB;
     public SpotifyAPI spotify;
     public string id = "media_player.den";
-    public TextMeshPro trackTitle;
-    public TextMeshPro artist;
+    public TextMeshProUGUI trackTitle;
+    public TextMeshProUGUI artist;
 
     private bool _isPlaying;
     private float _currentVolume;
@@ -59,7 +59,6 @@ public class SonosController : MonoBehaviour
             });
     }
 
-    // TODO Turn into event!
     void UpdateUI()
     {
         trackTitle.text = _currentTrack?.title ?? "";
@@ -107,6 +106,23 @@ public class SonosController : MonoBehaviour
         });
     }
 
+    public void JumpToTrack(int trackIndex)
+    {
+        dynamic data = new JObject();
+        data.entity_id = id;
+        data.queue_position = trackIndex;
+
+        string stringifiedData = data.ToString();
+        HUB.Post("sonos", "play_queue", stringifiedData).Then(res =>
+        {
+            _currentTrack = _currentAlbum.tracks[trackIndex];
+            _currentTrackIndex = trackIndex;
+        }).Catch(err =>
+        {
+            Debug.LogError(err.Message);
+        });
+    }
+
     public void OnVolumeSliderUpdated(SliderEventData eventData)
     {
 
@@ -130,10 +146,15 @@ public class SonosController : MonoBehaviour
         });
     }
 
-    public void AddAlbum()
+    public void SetTracklist(Album album)
     {
 
-        spotify.GetAlbum("6WLhmQ6uTqiOJHKNoLLmnX").Then(res =>
+
+    }
+
+    public void AddAlbum(string albumID)
+    {
+        spotify.GetAlbum(albumID).Then(res =>
         {
             string jsonStr = Encoding.UTF8.GetString(res.Data);
             dynamic albumData = JValue.Parse(jsonStr);

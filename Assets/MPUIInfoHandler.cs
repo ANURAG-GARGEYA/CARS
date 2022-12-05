@@ -9,8 +9,6 @@ public class MPUIInfoHandler : MonoBehaviour
     [SerializeField]
     private Texture PlayTexture, PauseTexture;
     [SerializeField]
-    private GameObject PlayPauseButton;
-    [SerializeField]
     private PinchSlider VolumeSlider;
     public void OnPlay()
     {
@@ -41,8 +39,8 @@ public class MPUIInfoHandler : MonoBehaviour
             Debug.Log("Mute");
             return;
         }
-        Debug.Log("Volume"+VolumeSlider.SliderValue);
+        Debug.Log("Volume" + VolumeSlider.SliderValue);
         //TODO write control volume code here - use volume slider value- already declared in this script
     }
-    
+
 }

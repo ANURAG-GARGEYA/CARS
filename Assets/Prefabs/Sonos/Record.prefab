@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8222224761858083364}
   - component: {fileID: 677763229319191261}
   - component: {fileID: 5114434719068734550}
+  - component: {fileID: 8006576603447191631}
   m_Layer: 0
   m_Name: Record
   m_TagString: Album
@@ -169,3 +170,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTetherWhenManipulating: 0
   IsBoundsHandles: 0
+--- !u!114 &8006576603447191631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416632556294481926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8edce008f0aeb04085a62f518c9d526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  albumID: 
