@@ -1237,7 +1237,7 @@ MonoBehaviour:
   _lpRecord: {fileID: 416632556294481926, guid: 213812e10d5875d4f9225e4938ab4182, type: 3}
   AlbumName: 
   AlbumID: 
-  AlbumArtSprite: {fileID: 0}
+  AlbumArtSprite: {fileID: 796918084120844662}
   LPRecordSpawnPoint: {fileID: 0}
 --- !u!1 &7698615158736866289
 GameObject:

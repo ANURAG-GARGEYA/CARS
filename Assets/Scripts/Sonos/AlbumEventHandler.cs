@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Microsoft.MixedReality.Toolkit.UI;
+using UnityEngine.UI;
 
 public class AlbumEventHandler : MonoBehaviour
 {
@@ -13,6 +11,7 @@ public class AlbumEventHandler : MonoBehaviour
     public GameObject LPRecord;
     public Transform LPRecordSpawnPoint;
     public string[] AlbumIDs;
+    public Sprite[] AlbumArts;
 
     private void Start()
     {
@@ -24,8 +23,10 @@ public class AlbumEventHandler : MonoBehaviour
             a.transform.localPosition = new Vector3(0, GapBetweenAlbums, 0);
             GapBetweenAlbums -= 0.141f;
             a.transform.rotation = Quaternion.identity;
-            a.GetComponent<AlbumInformationHolder>().LPRecordSpawnPoint = LPRecordSpawnPoint;
-            a.GetComponent<AlbumInformationHolder>().AlbumID = AlbumIDs[i % AlbumIDs.Length];
+            AlbumInformationHolder aInfo = a.GetComponent<AlbumInformationHolder>();
+            aInfo.LPRecordSpawnPoint = LPRecordSpawnPoint;
+            aInfo.AlbumID = AlbumIDs[i % AlbumIDs.Length];
+            aInfo.AlbumArtSprite.sprite = AlbumArts[i % AlbumArts.Length];
         }
     }
 

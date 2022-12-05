@@ -73,13 +73,13 @@ public class SonosController : MonoBehaviour
 
         if (_currentTrack != null)
         {
+            _currentTrackProgress += Time.deltaTime;
+            trackProgressSlider.value = _currentTrackProgress / (float)_currentTrack.duration;
+
             TimeSpan progressTime = TimeSpan.FromSeconds(_currentTrackProgress);
             trackProgressFormatted.text = progressTime.ToString(@"mm\:ss");
             TimeSpan durationTime = TimeSpan.FromSeconds(_currentTrack.duration);
             trackDurationFormatted.text = durationTime.ToString(@"mm\:ss");
-
-            _currentTrackProgress += Time.deltaTime;
-            trackProgressSlider.value = _currentTrackProgress / (float)_currentTrack.duration;
         }
     }
 
