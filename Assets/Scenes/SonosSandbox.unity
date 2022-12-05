@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &152356327 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1863876476875212334, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
-  m_PrefabInstance: {fileID: 1863876476723413961}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &190803925
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +462,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1075186607 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1863876477720480547, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+  m_PrefabInstance: {fileID: 1863876476723413961}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb48d899c3a55044d8df64f4a835132c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1195152210
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,6 +662,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1608158859 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1144259874, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+  m_PrefabInstance: {fileID: 1863876476723413961}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b00729ddd4f4db48acd85eb54c73b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1644321802 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1863876477720480546, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
@@ -711,17 +722,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1834521623 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8329812482157162715, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
-  m_PrefabInstance: {fileID: 1863876476723413961}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1837292567
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,17 +767,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMesh: {fileID: 221891641}
---- !u!114 &2012995469 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1863876477720480547, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
-  m_PrefabInstance: {fileID: 1863876476723413961}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb48d899c3a55044d8df64f4a835132c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1863876476723413961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -785,21 +774,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1578759818}
     m_Modifications:
-    - target: {fileID: 1750276221717632068, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+    - target: {fileID: 1144259874, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: clientID
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144259874, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: clientSecret
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141044181723863909, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141044181723863909, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1750276221717632068, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+    - target: {fileID: 1141044181723863909, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2012995469}
-    - target: {fileID: 1750276221717632068, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayPause
+      objectReference: {fileID: 1075186607}
+    - target: {fileID: 1141044181723863909, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1750276221717632068, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+    - target: {fileID: 1141044181723863909, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddAlbum
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141044181723863909, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SonosAPI, Assembly-CSharp
+      value: SonosController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141044181723863909, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1863876477720480544, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
       propertyPath: m_Name
@@ -854,12 +863,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1578759817}
     - target: {fileID: 1863876477720480547, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
-      propertyPath: artist
+      propertyPath: spotify
       value: 
-      objectReference: {fileID: 1834521623}
-    - target: {fileID: 1863876477720480547, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
-      propertyPath: trackTitle
-      value: 
-      objectReference: {fileID: 152356327}
+      objectReference: {fileID: 1608158859}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49f966cd75eea304fa34880ce2cd50ee, type: 3}
