@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace MusicHelpers
 {
@@ -10,12 +11,12 @@ namespace MusicHelpers
         public string artist;
         public float duration;
 
-        public Track(dynamic jsonData)
+        public Track(JObject jsonData)
         {
-            spotifyID = jsonData.id;
-            title = jsonData.name;
-            artist = jsonData.artists[0].name;
-            duration = jsonData.duration_ms / 1000f;
+            spotifyID = (string)jsonData["id"];
+            title = (string)jsonData["name"];
+            artist = (string)jsonData["artists"][0]["name"];
+            duration = (float)jsonData["duration_ms"] / 1000f;
         }
 
         public override string ToString()
@@ -34,16 +35,17 @@ namespace MusicHelpers
         public string coverBigResURL;
         public string coverSmallResURL;
 
-        public Album(dynamic jsonData)
+        public Album(JObject jsonData)
         {
-            spotifyID = jsonData.id;
-            title = jsonData.name;
-            artist = jsonData.artists[0].name;
-            coverBigResURL = jsonData.images[0].url;
-            coverSmallResURL = jsonData.images[2].url;
+            spotifyID = (string)jsonData["id"];
+            spotifyID = (string)jsonData["id"];
+            title = (string)jsonData["name"];
+            artist = (string)jsonData["artists"][0]["name"];
+            coverBigResURL = (string)jsonData["images"][0]["url"];
+            coverSmallResURL = (string)jsonData["images"][2]["url"];
 
             tracks = new List<Track>();
-            foreach (var trackData in jsonData.tracks.items)
+            foreach (JObject trackData in jsonData["tracks"]["items"])
                 tracks.Add(new Track(trackData));
         }
 

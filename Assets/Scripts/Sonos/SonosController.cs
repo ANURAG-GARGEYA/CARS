@@ -30,7 +30,7 @@ public class SonosController : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(UpdateValues(delay: 0.0f));
+        // StartCoroutine(UpdateValues(delay: 0.0f));
     }
 
     void Update()
@@ -46,33 +46,34 @@ public class SonosController : MonoBehaviour
         HUB.Get(id).Then(res =>
         {
             string jsonStr = Encoding.UTF8.GetString(res.Data);
-            dynamic data = JObject.Parse(jsonStr);
-            _isPlaying = data.state != "paused";
+            JObject data = JObject.Parse(jsonStr);
+            _isPlaying = (string)data["state"] != "paused";
 
+            var attributes = data["attributes"];
             if (_currentTrack != null)
             {
-                _currentTrack.title = data.attributes.media_title;
-                _currentTrack.artist = data.attributes.media_artist;
-                _currentTrack.duration = data.attributes.media_duration;
+                _currentTrack.title = (string)attributes["media_title"];
+                _currentTrack.artist = (string)attributes["media_artist"];
+                _currentTrack.duration = (float)attributes["media_duration"];
             }
 
             if (updateVolume)
-                _currentVolume = data.attributes.volume_level;
+                _currentVolume = (float)attributes["volume_level"];
 
         }).Catch(err =>
             {
+                Debug.Log("UPDATE VALUES");
                 Debug.LogError(err.Message);
             });
     }
 
     void UpdateUI()
     {
-        trackTitle.text = _currentTrack?.title ?? "";
-        artist.text = _currentTrack?.artist ?? "";
-
-
         if (_currentTrack != null)
         {
+            trackTitle.text = _currentTrack.title;
+            artist.text = _currentTrack?.artist;
+
             _currentTrackProgress += Time.deltaTime;
             trackProgressSlider.value = _currentTrackProgress / (float)_currentTrack.duration;
 
@@ -85,8 +86,8 @@ public class SonosController : MonoBehaviour
 
     public void PlayPause()
     {
-        dynamic data = new JObject();
-        data.entity_id = id;
+        JObject data = new JObject();
+        data["entity_id"] = id;
 
         string stringifiedData = data.ToString();
         HUB.Post("media_player", "media_play_pause", stringifiedData);
@@ -94,8 +95,8 @@ public class SonosController : MonoBehaviour
 
     public void NextTrack()
     {
-        dynamic data = new JObject();
-        data.entity_id = id;
+        JObject data = new JObject();
+        data["entity_id"] = id;
 
         string stringifiedData = data.ToString();
         HUB.Post("media_player", "media_next_track", stringifiedData).Then(res =>
@@ -111,8 +112,8 @@ public class SonosController : MonoBehaviour
 
     public void PrevTrack()
     {
-        dynamic data = new JObject();
-        data.entity_id = id;
+        JObject data = new JObject();
+        data["entity_id"] = id;
 
         string stringifiedData = data.ToString();
         HUB.Post("media_player", "media_previous_track", stringifiedData).Then(res =>
@@ -128,9 +129,9 @@ public class SonosController : MonoBehaviour
 
     public void JumpToTrack(int trackIndex)
     {
-        dynamic data = new JObject();
-        data.entity_id = id;
-        data.queue_position = trackIndex;
+        JObject data = new JObject();
+        data["entity_id"] = id;
+        data["queue_position"] = trackIndex;
 
         string stringifiedData = data.ToString();
         HUB.Post("sonos", "play_queue", stringifiedData).Then(res =>
@@ -152,9 +153,9 @@ public class SonosController : MonoBehaviour
 
         _currentVolume = newVolume;
 
-        dynamic data = new JObject();
-        data.entity_id = id;
-        data.volume_level = newVolume;
+        JObject data = new JObject();
+        data["entity_id"] = id;
+        data["volume_level"] = newVolume;
 
         string stringifiedData = data.ToString();
         HUB.Post("media_player", "volume_set", stringifiedData).Then(res =>
@@ -178,16 +179,16 @@ public class SonosController : MonoBehaviour
         spotify.GetAlbum(albumID).Then(res =>
         {
             string jsonStr = Encoding.UTF8.GetString(res.Data);
-            dynamic albumData = JValue.Parse(jsonStr);
+            JObject albumData = JObject.Parse(jsonStr);
 
             _currentAlbum = new Album(albumData);
             _currentTrackIndex = 0;
             _currentTrack = _currentAlbum.tracks[0];
 
-            dynamic postData = new JObject();
-            postData.entity_id = id;
-            postData.media_content_type = "music";
-            postData.media_content_id = $"https://open.spotify.com/album/{_currentAlbum.spotifyID}";
+            JObject postData = new JObject();
+            postData["entity_id"] = id;
+            postData["media_content_type"] = "music";
+            postData["media_content_id"] = $"https://open.spotify.com/album/{_currentAlbum.spotifyID}";
 
             string stringifiedData = postData.ToString();
             HUB.Post("media_player", "play_media", stringifiedData);

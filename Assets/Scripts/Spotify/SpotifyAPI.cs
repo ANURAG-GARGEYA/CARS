@@ -15,7 +15,7 @@ public class SpotifyAPI : MonoBehaviour
     private string _authToken;
     private string _baseUrl = "https://api.spotify.com/v1";
 
-    void Awake()
+    void Start()
     {
         ObtainToken();
     }
@@ -40,10 +40,12 @@ public class SpotifyAPI : MonoBehaviour
         RestClient.Post(rh).Then(res =>
             {
                 string jsonStr = Encoding.UTF8.GetString(res.Data);
-                dynamic data = JValue.Parse(jsonStr);
-                _authToken = data.access_token;
+                JObject data = JObject.Parse(jsonStr);
+                _authToken = (string)data["access_token"];
             }).Catch(err =>
             {
+                _authToken = "";
+                Debug.LogError("FAILED TO OBTAIN TOKEN");
                 Debug.LogError(err.Message);
             });
 
@@ -52,6 +54,9 @@ public class SpotifyAPI : MonoBehaviour
 
     public RSG.IPromise<ResponseHelper> GetAlbum(string albumID)
     {
+        if (_authToken == "")
+            ObtainToken();
+
         RestClient.DefaultRequestHeaders["Authorization"] = $"Bearer {_authToken}";
         var resPromise = RestClient.Get($"{_baseUrl}/albums/{albumID}");
         RestClient.ClearDefaultHeaders();
