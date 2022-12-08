@@ -47,7 +47,7 @@ public class SonosController : MonoBehaviour
         {
             string jsonStr = Encoding.UTF8.GetString(res.Data);
             JObject data = JObject.Parse(jsonStr);
-            _isPlaying = (string)data["state"] != "paused";
+            // _isPlaying = (string)data["state"] != "paused"; // it's delayed anyway, stupid instant response from HA
 
             var attributes = data["attributes"];
             if (_currentTrack != null)
@@ -74,8 +74,11 @@ public class SonosController : MonoBehaviour
             trackTitle.text = _currentTrack.title;
             artist.text = _currentTrack?.artist;
 
-            _currentTrackProgress += Time.deltaTime;
-            trackProgressSlider.value = _currentTrackProgress / (float)_currentTrack.duration;
+            if (_isPlaying)
+            {
+                _currentTrackProgress += Time.deltaTime;
+                trackProgressSlider.value = _currentTrackProgress / (float)_currentTrack.duration;
+            }
 
             TimeSpan progressTime = TimeSpan.FromSeconds(_currentTrackProgress);
             trackProgressFormatted.text = progressTime.ToString(@"mm\:ss");
@@ -90,7 +93,10 @@ public class SonosController : MonoBehaviour
         data["entity_id"] = id;
 
         string stringifiedData = data.ToString();
-        HUB.Post("media_player", "media_play_pause", stringifiedData);
+        HUB.Post("media_player", "media_play_pause", stringifiedData).Then(res =>
+        {
+            _isPlaying = !_isPlaying;
+        });
     }
 
     public void NextTrack()
@@ -191,7 +197,10 @@ public class SonosController : MonoBehaviour
             postData["media_content_id"] = $"https://open.spotify.com/album/{_currentAlbum.spotifyID}";
 
             string stringifiedData = postData.ToString();
-            HUB.Post("media_player", "play_media", stringifiedData);
+            HUB.Post("media_player", "play_media", stringifiedData).Then(res =>
+            {
+                _isPlaying = true; // set it manually as it doesn't update properly...
+            });
 
         }).Catch(err =>
         {

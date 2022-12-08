@@ -18,11 +18,19 @@ public class AlbumInformationHolder : MonoBehaviour
     {
         AlbumArtSprite = GetComponentInChildren<SpriteRenderer>();
     }
+
     public void SpawnLp()
     {
-        GameObject a = Instantiate(_lpRecord, LPRecordSpawnPoint.position, LPRecordSpawnPoint.rotation);
-        a.transform.localScale = LPRecordSpawnPoint.localScale;
-        a.GetComponent<Record>().albumID = AlbumID;
+
+        GameObject recordGO;
+        recordGO = GameObject.Find("Record(Clone)");
+        if (recordGO == null)
+            recordGO = Instantiate(_lpRecord, LPRecordSpawnPoint.position, LPRecordSpawnPoint.rotation);
+
+        recordGO.transform.localScale = LPRecordSpawnPoint.localScale;
+        Record record = recordGO.GetComponent<Record>();
+        record.albumID = AlbumID;
+        record.albumArtSprite.sprite = AlbumArtSprite.sprite;
     }
 
 }
