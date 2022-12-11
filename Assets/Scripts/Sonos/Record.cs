@@ -14,7 +14,7 @@ public class Record : MonoBehaviour
     void Update()
     {
         if (_isSpinning)
-            transform.rotation *= Quaternion.Euler(0.0f, 0.0f, -0.18f);
+            transform.rotation *= Quaternion.Euler(0.0f, 0.0f, -0.18f * 2.0f); // Slow rotation on HL hence multiplication
     }
 
     public void SetIsSpinning(bool isSpinning)
